@@ -73,4 +73,12 @@ print(f"Average Change: ${str(avg_change)}")
 print(f"Greatest Increase in Profits: " + " " + max_date + " "+ str(max_change))
 print(f"Greatest Decrease in Profits: " + " " + min_date + " "+ str(min_change)) 
 
-
+output_dest = os.path.join('pybank_results.txt')
+with open(output_dest, 'w') as writefile:
+    writefile.write("Financial Analysis\n")
+    writefile.write("----------------------------\n")
+    writefile.write("Total Months: " + str(totalMonths)+"\n")
+    writefile.write("Total: $"+str(prof_loss) +"\n")
+    writefile.write("Average  Change: $"+str(avg_change)+"\n")
+    writefile.write("Greatest Increase in Profits: " + max_date + " (" +str(max_change) + ")"+"\n")
+    writefile.write("Greatest Decrease in Profits: " + min_date + " (" +str(min_change) + ")"+"\n")

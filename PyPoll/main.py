@@ -13,11 +13,11 @@ filepath = os.path.join('election_data.csv')
 with open(filepath,newline="") as csvfile:
    csvreader = csv.reader(csvfile)
 
-   line = next(csvreader,None)
-   for line in csvreader:
+   row = next(csvreader,None)
+   for row in csvreader:
 
        num_votes = num_votes + 1
-       candidate = line[2]
+       candidate = row[2]
 
        if candidate in candidates:
            candidate_index = candidates.index(candidate)
@@ -48,3 +48,14 @@ for count in range(len(candidates)):
 print("---------------------------")
 print("Winner: (" + str(winner) + ")" )
 print("---------------------------")
+
+output_dest = os.path.join('pypoll_results.txt')
+with open(output_dest, 'w') as writefile:
+    writefile.write("Election Results\n")
+    writefile.write("--------------------------\n")
+    writefile.write("Total Votes: " + str(num_votes)+ "\n")
+    writefile.write("--------------------------\n")
+    for count in range(len(candidates)): writefile.write(str(candidates[count]) + ": " + str(percentages[count]) + "% (" + str(vote_counts[count]) + ")\n")
+    writefile.write("---------------------------\n")
+    writefile.write("Winner: (" + str(winner) + ")\n" )
+    writefile.write("---------------------------\n")
